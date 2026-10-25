@@ -2549,7 +2549,7 @@ class DynamicPartitionsDifference(object):
       self._op_list.append("# %s" % line)
 
     if self._preserve_partitions:
-      if source_info_dict is None:
+      if self._remove_all_before_apply:
         comment('Preserve every existing logical partition not owned by this update')
         for p, u in self._partition_updates.items():
           if u.tgt_size:
