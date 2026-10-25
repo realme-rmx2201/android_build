@@ -3764,6 +3764,8 @@ endef
 define dump-dynamic-partitions-info
   $(if $(filter true,$(PRODUCT_USE_DYNAMIC_PARTITIONS)), \
     echo "use_dynamic_partitions=true" >> $(1))
+  $(if $(filter true,$(BOARD_PRESERVE_DYNAMIC_PARTITIONS)), \
+    echo "preserve_dynamic_partitions=true" >> $(1))
   $(if $(filter true,$(PRODUCT_RETROFIT_DYNAMIC_PARTITIONS)), \
     echo "dynamic_partition_retrofit=true" >> $(1))
   echo "lpmake=$(notdir $(LPMAKE))" >> $(1)

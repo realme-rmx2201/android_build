@@ -2425,6 +2425,7 @@ class DynamicPartitionsDifference(object):
       progress_dict = dict()
 
     self._build_without_vendor = build_without_vendor
+    self._preserve_partitions = info_dict.get("preserve_dynamic_partitions") == "true"
     self._remove_all_before_apply = False
     if source_info_dict is None:
       self._remove_all_before_apply = True
@@ -2546,6 +2547,15 @@ class DynamicPartitionsDifference(object):
 
     def comment(line):
       self._op_list.append("# %s" % line)
+
+    if self._preserve_partitions:
+      if source_info_dict is None:
+        comment('Preserve every existing logical partition not owned by this update')
+        for p, u in self._partition_updates.items():
+          if u.tgt_size:
+            append('resize %s %s' % (p, u.tgt_size))
+        return
+      raise ValueError('preserve_dynamic_partitions is only valid for full OTA')
 
     if self._build_without_vendor:
       comment('System-only build, keep original vendor partition')
