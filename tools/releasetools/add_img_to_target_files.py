@@ -273,7 +273,8 @@ def AddDtbo(output_zip):
   shutil.copy(dtbo_prebuilt_path, img.name)
 
   # AVB-sign the image as needed.
-  if OPTIONS.info_dict.get("avb_enable") == "true":
+  if (OPTIONS.info_dict.get("avb_enable") == "true" and
+      OPTIONS.info_dict.get("dtbo_skip_avb") != "true"):
     avbtool = OPTIONS.info_dict["avb_avbtool"]
     part_size = OPTIONS.info_dict["dtbo_size"]
     # The AVB hash footer will be replaced if already present.

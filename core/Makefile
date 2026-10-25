@@ -4156,6 +4156,7 @@ ifdef BOARD_PREBUILT_DTBOIMAGE
 	$(hide) echo "has_dtbo=true" >> $(zip_root)/META/misc_info.txt
 ifeq ($(BOARD_AVB_ENABLE),true)
 	$(hide) echo "dtbo_size=$(BOARD_DTBOIMG_PARTITION_SIZE)" >> $(zip_root)/META/misc_info.txt
+	$(hide) echo "dtbo_skip_avb=$(BOARD_DTBO_SKIP_AVB)" >> $(zip_root)/META/misc_info.txt
 	$(hide) echo "avb_dtbo_add_hash_footer_args=$(BOARD_AVB_DTBO_ADD_HASH_FOOTER_ARGS)" >> $(zip_root)/META/misc_info.txt
 ifdef BOARD_AVB_DTBO_KEY_PATH
 	$(hide) echo "avb_dtbo_key_path=$(BOARD_AVB_DTBO_KEY_PATH)" >> $(zip_root)/META/misc_info.txt
