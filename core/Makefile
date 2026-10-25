@@ -3225,7 +3225,9 @@ $(eval $(call check-and-set-avb-args,odm))
 endif
 
 ifdef INSTALLED_DTBOIMAGE_TARGET
+ifneq ($(BOARD_DTBO_SKIP_AVB),true)
 $(eval $(call check-and-set-avb-args,dtbo))
+endif
 endif
 
 ifdef INSTALLED_RECOVERYIMAGE_TARGET
