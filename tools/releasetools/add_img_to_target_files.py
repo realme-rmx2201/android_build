@@ -863,7 +863,7 @@ def AddImagesToTargetFiles(filename):
     # chained VBMeta image plus the chained VBMeta images themselves.
     vbmeta_partitions = common.AVB_PARTITIONS[:]
     if OPTIONS.info_dict.get("dtbo_skip_avb") == "true":
-      vbmeta_partitions.remove("dtbo")
+      vbmeta_partitions = [p for p in vbmeta_partitions if p != "dtbo"]
 
     vbmeta_system = OPTIONS.info_dict.get("avb_vbmeta_system", "").strip()
     if vbmeta_system:
